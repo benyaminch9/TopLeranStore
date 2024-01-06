@@ -12,22 +12,22 @@ namespace TopLearn.Web.Models.User
         [Display(Name = "نام کاربری")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(200, ErrorMessage = "{0} نمی تواند بیشتر از {1} کارکتر باشد")]
-        public int UserName { get; set; }
+        public string UserName { get; set; }
 
         [Display(Name = "ایمیل")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(200, ErrorMessage = "{0} نمی تواند بیشتر از {1} کارکتر باشد")]
         [EmailAddress(ErrorMessage = "ایمیل وارد شده معتبر نمی باشد")]
-        public int Email { get; set; }
+        public string Email { get; set; }
 
         [Display(Name = "کلمه عبور")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(200, ErrorMessage = "{0} نمی تواند بیشتر از {1} کارکتر باشد")]
-        public int Password { get; set; }
+        public string Password { get; set; }
 
         [Display(Name = "کد فعال سازی")]
         [MaxLength(200, ErrorMessage = "{0} نمی تواند بیشتر از {1} کارکتر باشد")]
-        public int ActiveCode { get; set; }
+        public string ActiveCode { get; set; }
 
         [Display(Name = "وضعیت")]
         public bool IsActive  { get; set; }

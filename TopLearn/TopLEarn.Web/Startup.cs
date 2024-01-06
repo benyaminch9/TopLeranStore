@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TopLearn.Core.Services;
 using TopLearn.DataLayer.Context;
 
 namespace TopLEarn.Web
@@ -34,6 +35,18 @@ namespace TopLEarn.Web
             });
 
             #endregion
+
+            #region IoC
+
+            services.AddTransient<UserServices, UserServices>();
+
+            services.AddControllersWithViews(options =>
+            {
+                options.EnableEndpointRouting = false;
+            });
+
+            #endregion
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,8 +57,8 @@ namespace TopLEarn.Web
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting();
             app.UseMvcWithDefaultRoute();
+            app.UseRouting();
             app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
