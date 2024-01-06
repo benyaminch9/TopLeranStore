@@ -36,7 +36,6 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseMvcWithDefaultRoute();
 app.UseStaticFiles();
 
 app.UseAuthentication();
