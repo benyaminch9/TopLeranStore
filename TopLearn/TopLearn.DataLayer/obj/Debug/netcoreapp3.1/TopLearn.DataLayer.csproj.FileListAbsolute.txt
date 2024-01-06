@@ -25,3 +25,16 @@ W:\برنامه نویسی\آموزش ها\Practise\TopLearnStore\TopLearn\TopLe
 W:\برنامه نویسی\آموزش ها\Practise\TopLearnStore\TopLearn\TopLearn.DataLayer\obj\Debug\netcoreapp3.1\TopLearn.DataLayer.dll
 W:\برنامه نویسی\آموزش ها\Practise\TopLearnStore\TopLearn\TopLearn.DataLayer\obj\Debug\netcoreapp3.1\TopLearn.DataLayer.pdb
 W:\برنامه نویسی\آموزش ها\Practise\TopLearnStore\TopLearn\TopLearn.DataLayer\obj\Debug\netcoreapp3.1\TopLearn.DataLayer.genruntimeconfig.cache
+D:\Download\TopLeranStore-master\TopLearn\TopLearn.DataLayer\bin\Debug\netcoreapp3.1\TopLearn.DataLayer.deps.json
+D:\Download\TopLeranStore-master\TopLearn\TopLearn.DataLayer\bin\Debug\netcoreapp3.1\TopLearn.DataLayer.runtimeconfig.json
+D:\Download\TopLeranStore-master\TopLearn\TopLearn.DataLayer\bin\Debug\netcoreapp3.1\TopLearn.DataLayer.runtimeconfig.dev.json
+D:\Download\TopLeranStore-master\TopLearn\TopLearn.DataLayer\bin\Debug\netcoreapp3.1\TopLearn.DataLayer.dll
+D:\Download\TopLeranStore-master\TopLearn\TopLearn.DataLayer\bin\Debug\netcoreapp3.1\TopLearn.DataLayer.pdb
+D:\Download\TopLeranStore-master\TopLearn\TopLearn.DataLayer\obj\Debug\netcoreapp3.1\TopLearn.DataLayer.csproj.AssemblyReference.cache
+D:\Download\TopLeranStore-master\TopLearn\TopLearn.DataLayer\obj\Debug\netcoreapp3.1\TopLearn.DataLayer.GeneratedMSBuildEditorConfig.editorconfig
+D:\Download\TopLeranStore-master\TopLearn\TopLearn.DataLayer\obj\Debug\netcoreapp3.1\TopLearn.DataLayer.AssemblyInfoInputs.cache
+D:\Download\TopLeranStore-master\TopLearn\TopLearn.DataLayer\obj\Debug\netcoreapp3.1\TopLearn.DataLayer.AssemblyInfo.cs
+D:\Download\TopLeranStore-master\TopLearn\TopLearn.DataLayer\obj\Debug\netcoreapp3.1\TopLearn.DataLayer.csproj.CoreCompileInputs.cache
+D:\Download\TopLeranStore-master\TopLearn\TopLearn.DataLayer\obj\Debug\netcoreapp3.1\TopLearn.DataLayer.dll
+D:\Download\TopLeranStore-master\TopLearn\TopLearn.DataLayer\obj\Debug\netcoreapp3.1\TopLearn.DataLayer.pdb
+D:\Download\TopLeranStore-master\TopLearn\TopLearn.DataLayer\obj\Debug\netcoreapp3.1\TopLearn.DataLayer.genruntimeconfig.cache

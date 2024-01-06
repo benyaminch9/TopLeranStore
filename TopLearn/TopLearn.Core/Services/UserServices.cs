@@ -5,7 +5,8 @@ using System.Linq;
 using System.Text;
 using TopLearn.Core.Services.Interfaces;
 using TopLearn.DataLayer.Context;
-using TopLearn.Web.Models.User;
+using TopLearn.DataLayer;
+using TopLearn.DataLayer.Entities.User;
 
 namespace TopLearn.Core.Services
 {
@@ -29,9 +30,11 @@ namespace TopLearn.Core.Services
 
         public int AddUser(User user)
         {
-            throw new NotImplementedException();
+            _context.Users.Add(user);
+            _context.SaveChanges();
+            return user.UserId;
         }
 
-
+       
     }
 }

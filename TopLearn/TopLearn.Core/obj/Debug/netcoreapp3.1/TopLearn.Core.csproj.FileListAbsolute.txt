@@ -28,3 +28,19 @@ W:\برنامه نویسی\آموزش ها\Practise\TopLearnStore\TopLearn\TopLe
 W:\برنامه نویسی\آموزش ها\Practise\TopLearnStore\TopLearn\TopLearn.Core\obj\Debug\netcoreapp3.1\TopLearn.Core.dll
 W:\برنامه نویسی\آموزش ها\Practise\TopLearnStore\TopLearn\TopLearn.Core\obj\Debug\netcoreapp3.1\TopLearn.Core.pdb
 W:\برنامه نویسی\آموزش ها\Practise\TopLearnStore\TopLearn\TopLearn.Core\obj\Debug\netcoreapp3.1\TopLearn.Core.genruntimeconfig.cache
+D:\Download\TopLeranStore-master\TopLearn\TopLearn.Core\bin\Debug\netcoreapp3.1\TopLearn.Core.deps.json
+D:\Download\TopLeranStore-master\TopLearn\TopLearn.Core\bin\Debug\netcoreapp3.1\TopLearn.Core.runtimeconfig.json
+D:\Download\TopLeranStore-master\TopLearn\TopLearn.Core\bin\Debug\netcoreapp3.1\TopLearn.Core.runtimeconfig.dev.json
+D:\Download\TopLeranStore-master\TopLearn\TopLearn.Core\bin\Debug\netcoreapp3.1\TopLearn.Core.dll
+D:\Download\TopLeranStore-master\TopLearn\TopLearn.Core\bin\Debug\netcoreapp3.1\TopLearn.Core.pdb
+D:\Download\TopLeranStore-master\TopLearn\TopLearn.Core\bin\Debug\netcoreapp3.1\TopLearn.DataLayer.dll
+D:\Download\TopLeranStore-master\TopLearn\TopLearn.Core\bin\Debug\netcoreapp3.1\TopLearn.DataLayer.pdb
+D:\Download\TopLeranStore-master\TopLearn\TopLearn.Core\obj\Debug\netcoreapp3.1\TopLearn.Core.csproj.AssemblyReference.cache
+D:\Download\TopLeranStore-master\TopLearn\TopLearn.Core\obj\Debug\netcoreapp3.1\TopLearn.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\Download\TopLeranStore-master\TopLearn\TopLearn.Core\obj\Debug\netcoreapp3.1\TopLearn.Core.AssemblyInfoInputs.cache
+D:\Download\TopLeranStore-master\TopLearn\TopLearn.Core\obj\Debug\netcoreapp3.1\TopLearn.Core.AssemblyInfo.cs
+D:\Download\TopLeranStore-master\TopLearn\TopLearn.Core\obj\Debug\netcoreapp3.1\TopLearn.Core.csproj.CoreCompileInputs.cache
+D:\Download\TopLeranStore-master\TopLearn\TopLearn.Core\obj\Debug\netcoreapp3.1\TopLearn.Core.csproj.CopyComplete
+D:\Download\TopLeranStore-master\TopLearn\TopLearn.Core\obj\Debug\netcoreapp3.1\TopLearn.Core.dll
+D:\Download\TopLeranStore-master\TopLearn\TopLearn.Core\obj\Debug\netcoreapp3.1\TopLearn.Core.pdb
+D:\Download\TopLeranStore-master\TopLearn\TopLearn.Core\obj\Debug\netcoreapp3.1\TopLearn.Core.genruntimeconfig.cache

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace TopLearn.Web.Models.User
+namespace TopLearn.DataLayer.Entities.User
 {
     public class Role
     {

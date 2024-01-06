@@ -2,7 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using TopLearn.Web.Models.User;
+using TopLearn.DataLayer;
+using TopLearn.DataLayer.Entities.User;
 
 namespace TopLearn.DataLayer.Context
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using TopLearn.Web.Models.User;
+using TopLearn.DataLayer.Entities.User;
 
 namespace TopLearn.Core.Services.Interfaces
 {

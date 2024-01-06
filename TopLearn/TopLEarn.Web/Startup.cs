@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,8 @@ namespace TopLEarn.Web
 
             services.AddDbContext<TopLearnContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("TopLearnConnection"));
+                options.UseSqlServer(Configuration.GetConnectionString("TopLearnConnection"),
+                      options => options.EnableRetryOnFailure());
             });
 
             #endregion
