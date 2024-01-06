@@ -1,0 +1,13 @@
+W:\برنامه نویسی\آموزش ها\Practise\TopLearn(practise)\TopLearn\TopLearn.DataLayer\obj\Debug\netcoreapp3.1\TopLearn.DataLayer.csproj.AssemblyReference.cache
+W:\برنامه نویسی\آموزش ها\Practise\TopLearn(practise)\TopLearn\TopLearn.DataLayer\obj\Debug\netcoreapp3.1\TopLearn.DataLayer.GeneratedMSBuildEditorConfig.editorconfig
+W:\برنامه نویسی\آموزش ها\Practise\TopLearn(practise)\TopLearn\TopLearn.DataLayer\obj\Debug\netcoreapp3.1\TopLearn.DataLayer.AssemblyInfoInputs.cache
+W:\برنامه نویسی\آموزش ها\Practise\TopLearn(practise)\TopLearn\TopLearn.DataLayer\obj\Debug\netcoreapp3.1\TopLearn.DataLayer.AssemblyInfo.cs
+W:\برنامه نویسی\آموزش ها\Practise\TopLearn(practise)\TopLearn\TopLearn.DataLayer\obj\Debug\netcoreapp3.1\TopLearn.DataLayer.csproj.CoreCompileInputs.cache
+W:\برنامه نویسی\آموزش ها\Practise\TopLearn(practise)\TopLearn\TopLearn.DataLayer\bin\Debug\netcoreapp3.1\TopLearn.DataLayer.deps.json
+W:\برنامه نویسی\آموزش ها\Practise\TopLearn(practise)\TopLearn\TopLearn.DataLayer\bin\Debug\netcoreapp3.1\TopLearn.DataLayer.runtimeconfig.json
+W:\برنامه نویسی\آموزش ها\Practise\TopLearn(practise)\TopLearn\TopLearn.DataLayer\bin\Debug\netcoreapp3.1\TopLearn.DataLayer.runtimeconfig.dev.json
+W:\برنامه نویسی\آموزش ها\Practise\TopLearn(practise)\TopLearn\TopLearn.DataLayer\bin\Debug\netcoreapp3.1\TopLearn.DataLayer.dll
+W:\برنامه نویسی\آموزش ها\Practise\TopLearn(practise)\TopLearn\TopLearn.DataLayer\bin\Debug\netcoreapp3.1\TopLearn.DataLayer.pdb
+W:\برنامه نویسی\آموزش ها\Practise\TopLearn(practise)\TopLearn\TopLearn.DataLayer\obj\Debug\netcoreapp3.1\TopLearn.DataLayer.dll
+W:\برنامه نویسی\آموزش ها\Practise\TopLearn(practise)\TopLearn\TopLearn.DataLayer\obj\Debug\netcoreapp3.1\TopLearn.DataLayer.pdb
+W:\برنامه نویسی\آموزش ها\Practise\TopLearn(practise)\TopLearn\TopLearn.DataLayer\obj\Debug\netcoreapp3.1\TopLearn.DataLayer.genruntimeconfig.cache
