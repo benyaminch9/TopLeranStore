@@ -135,3 +135,5 @@ D:\Download\TopLeranStore-master\TopLearn\TopLEarn.Web\obj\Debug\netcoreapp3.1\s
 D:\Download\TopLeranStore-master\TopLearn\TopLEarn.Web\obj\Debug\netcoreapp3.1\TopLEarn.Web.csproj.CopyComplete
 D:\Download\TopLeranStore-master\TopLearn\TopLEarn.Web\obj\Debug\netcoreapp3.1\TopLEarn.Web.genruntimeconfig.cache
 W:\برنامه نویسی\آموزش ها\Practise\TopLearnStore\TopLearn\TopLEarn.Web\obj\Debug\netcoreapp3.1\Razor\Views\Accont\SuccessRegister.cshtml.g.cs
+W:\برنامه نویسی\آموزش ها\Practise\TopLearnStore\TopLearn\TopLEarn.Web\obj\Debug\netcoreapp3.1\Razor\Views\Accont\Login.cshtml.g.cs
+W:\برنامه نویسی\آموزش ها\Practise\TopLearnStore\TopLearn\TopLEarn.Web\obj\Debug\netcoreapp3.1\Razor\Views\Accont\Index.cshtml.g.cs
