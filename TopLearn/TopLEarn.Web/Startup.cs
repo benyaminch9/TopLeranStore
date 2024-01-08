@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TopLearn.Core.Convertors;
 using TopLearn.Core.Services;
 using TopLearn.DataLayer.Context;
 
@@ -65,6 +66,8 @@ namespace TopLEarn.Web
             {
                 options.EnableEndpointRouting = false;
             });
+
+            services.AddTransient<IViewRenderService, RenderViewToString>();
 
             #endregion
 

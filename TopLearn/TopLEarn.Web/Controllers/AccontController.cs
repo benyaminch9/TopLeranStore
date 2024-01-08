@@ -8,8 +8,8 @@ using TopLearn.Core.Convertors;
 using TopLearn.Core.DTOs;
 using TopLearn.Core.Generate;
 using TopLearn.Core.Security;
+using TopLearn.Core.Senders;
 using TopLearn.Core.Services;
-using TopLearn.DataLayer;
 using TopLearn.DataLayer.Entities.User;
 
 namespace TopLEarn.Web.Controllers
@@ -17,9 +17,11 @@ namespace TopLEarn.Web.Controllers
     public class AccontController : Controller
     {
         private UserServices _userServices;
-        public AccontController(UserServices userServices)
+        private IViewRenderService _viewRenderService;
+        public AccontController(UserServices userServices, IViewRenderService viewRenderService)
         {
             _userServices = userServices;
+            _viewRenderService = viewRenderService;
         }
 
         #region Register
@@ -32,37 +34,47 @@ namespace TopLEarn.Web.Controllers
 
         [HttpPost]
         [Route("Register")]
-        public IActionResult Register(RegisterViewModel resgister)
+        public IActionResult Register(RegisterViewModel register)
         {
             if (!ModelState.IsValid)
             {
-                return View(resgister);
+                return View(register);
             }
 
-            if(_userServices.IsExistUserName(resgister.UserName))
+
+            if (_userServices.IsExistUserName(register.UserName))
             {
-                ModelState.AddModelError("UserName", "نام کاربری قبلا استفاده شده است");
-                return View(resgister);
+                ModelState.AddModelError("UserName", "نام کاربری معتبر نمی باشد");
+                return View(register);
             }
 
-            if (_userServices.IsExistEmail(FixedText.FixEmail(resgister.Email)))
+            if (_userServices.IsExistEmail(FixedText.FixEmail(register.Email)))
             {
                 ModelState.AddModelError("Email", "ایمیل معتبر نمی باشد");
-                return View(resgister);
+                return View(register);
             }
+
 
             User user = new User()
             {
-                ActiveCode=NameGenerator.GenerateUniqCode(),
-                Email=FixedText.FixEmail(resgister.Email),
-                IsActive=false,
-                Password=PasswordHelper.EncodePasswordMd5(resgister.Password),
-                RegisterDate=DateTime.Now,
-                UserAvatar= "Defult.jpg",
-                UserName=resgister.UserName
+                ActiveCode = NameGenerator.GenerateUniqCode(),
+                Email = FixedText.FixEmail(register.Email),
+                IsActive = false,
+                Password = PasswordHelper.EncodePasswordMd5(register.Password),
+                RegisterDate = DateTime.Now,
+                UserAvatar = "Defult.jpg",
+                UserName = register.UserName
             };
             _userServices.AddUser(user);
-            return View("SuccessRegister",user);
+
+            #region Send Activation Email
+
+            string body = _viewRenderService.RenderToStringAsync("_ActiveEmail", user);
+            SendEmail.Send(user.Email, "فعالسازی", body);
+
+            #endregion
+
+            return View("SuccessRegister", user);
         }
 
         #endregion
@@ -134,6 +146,67 @@ namespace TopLEarn.Web.Controllers
             return Redirect("/Login");
         }
 
+        #endregion
+
+        #region Forgot Password
+        [Route("ForgotPassword")]
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Route("ForgotPassword")]
+        public ActionResult ForgotPassword(ForgotPasswordViewModel forgot)
+        {
+            if (!ModelState.IsValid)
+                return View(forgot);
+
+            string fixedEmail = FixedText.FixEmail(forgot.Email);
+            User user = _userServices.GetUserByEmail(fixedEmail);
+
+            if (user == null)
+            {
+                ModelState.AddModelError("Email", "کاربری یافت نشد");
+                return View(forgot);
+            }
+
+            string bodyEmail = _viewRenderService.RenderToStringAsync("_ForgotPassword", user);
+            SendEmail.Send(user.Email, "بازیابی حساب کاربری", bodyEmail);
+            ViewBag.IsSuccess = true;
+
+            return View();
+        }
+        #endregion
+
+        #region Reset Password
+        public ActionResult ResetPassword(string id)
+        {
+            return View(new ResetPasswordViewModel()
+            {
+                ActiveCode = id
+            });
+        }
+
+
+        [HttpPost]
+        public ActionResult ResetPassword(ResetPasswordViewModel reset)
+        {
+            if (!ModelState.IsValid)
+                return View(reset);
+
+            User user = _userServices.GetUserByActiveCode(reset.ActiveCode);
+
+            if (user == null)
+                return NotFound();
+
+            string hashNewPassword = PasswordHelper.EncodePasswordMd5(reset.Password);
+            user.Password = hashNewPassword;
+            _userServices.UpdateUser(user);
+
+            return Redirect("/Login");
+
+        }
         #endregion
 
     }
