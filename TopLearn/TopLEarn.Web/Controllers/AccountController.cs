@@ -1,28 +1,31 @@
-﻿using Microsoft.AspNetCore.Authentication;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Security.Claims;
 using TopLearn.Core.Convertors;
 using TopLearn.Core.DTOs;
 using TopLearn.Core.Generate;
 using TopLearn.Core.Security;
 using TopLearn.Core.Senders;
-using TopLearn.Core.Services;
+using TopLearn.Core.Services.Interfaces;
 using TopLearn.DataLayer.Entities.User;
 
-namespace TopLEarn.Web.Controllers
+namespace TopLearn.Web.Controllers
 {
-    public class AccontController : Controller
+    public class AccountController : Controller
     {
-        private UserServices _userServices;
-        private IViewRenderService _viewRenderService;
-        public AccontController(UserServices userServices, IViewRenderService viewRenderService)
+        private IUserServices _userService;
+        private IViewRenderService _viewRender;
+
+        public AccountController(IUserServices userService, IViewRenderService viewRender)
         {
-            _userServices = userServices;
-            _viewRenderService = viewRenderService;
-        }
+            _userService = userService;
+            _viewRender = viewRender;
+        }    
 
         #region Register
 
@@ -41,21 +44,21 @@ namespace TopLEarn.Web.Controllers
                 return View(register);
             }
 
-
-            if (_userServices.IsExistUserName(register.UserName))
+            
+            if (_userService.IsExistUserName(register.UserName))
             {
-                ModelState.AddModelError("UserName", "نام کاربری معتبر نمی باشد");
+                ModelState.AddModelError("UserName","نام کاربری معتبر نمی باشد");
                 return View(register);
             }
 
-            if (_userServices.IsExistEmail(FixedText.FixEmail(register.Email)))
+            if (_userService.IsExistEmail(FixedText.FixEmail(register.Email)))
             {
                 ModelState.AddModelError("Email", "ایمیل معتبر نمی باشد");
                 return View(register);
             }
 
 
-            User user = new User()
+            DataLayer.Entities.User.User user=new User()
             {
                 ActiveCode = NameGenerator.GenerateUniqCode(),
                 Email = FixedText.FixEmail(register.Email),
@@ -65,17 +68,18 @@ namespace TopLEarn.Web.Controllers
                 UserAvatar = "Defult.jpg",
                 UserName = register.UserName
             };
-            _userServices.AddUser(user);
+            _userService.AddUser(user);
 
             #region Send Activation Email
 
-            string body = _viewRenderService.RenderToStringAsync("_ActiveEmail", user);
-            SendEmail.Send(user.Email, "فعالسازی", body);
+            string body = _viewRender.RenderToStringAsync("_ActiveEmail", user);
+            SendEmail.Send(user.Email,"فعالسازی",body);
 
             #endregion
 
-            return View("SuccessRegister", user);
+            return View("SuccessRegister",user);
         }
+
 
         #endregion
 
@@ -95,18 +99,18 @@ namespace TopLEarn.Web.Controllers
                 return View(login);
             }
 
-            var user = _userServices.LoginUser(login);
-            if (user != null)
+            var user = _userService.LoginUser(login);
+            if (user!=null)
             {
                 if (user.IsActive)
                 {
-                    var claims = new List<Claim>()
+                    var claims=new List<Claim>()
                     {
                         new Claim(ClaimTypes.NameIdentifier,user.UserId.ToString()),
                         new Claim(ClaimTypes.Name,user.UserName)
                     };
-                    var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                    var principal = new ClaimsPrincipal(identity);
+                    var identity=new ClaimsIdentity(claims,CookieAuthenticationDefaults.AuthenticationScheme);
+                    var principal= new ClaimsPrincipal(identity);
 
                     var properties = new AuthenticationProperties
                     {
@@ -122,7 +126,7 @@ namespace TopLEarn.Web.Controllers
                     ModelState.AddModelError("Email", "حساب کاربری شما فعال نمی باشد");
                 }
             }
-            ModelState.AddModelError("Email", "کاربری با مشخصات وارد شده یافت نشد");
+            ModelState.AddModelError("Email","کاربری با مشخصات وارد شده یافت نشد");
             return View(login);
         }
 
@@ -132,7 +136,7 @@ namespace TopLEarn.Web.Controllers
 
         public IActionResult ActiveAccount(string id)
         {
-            ViewBag.IsActive = _userServices.ActiveAccount(id);
+            ViewBag.IsActive = _userService.ActiveAccount(id);
             return View();
         }
 
@@ -163,7 +167,7 @@ namespace TopLEarn.Web.Controllers
                 return View(forgot);
 
             string fixedEmail = FixedText.FixEmail(forgot.Email);
-            User user = _userServices.GetUserByEmail(fixedEmail);
+            DataLayer.Entities.User.User user = _userService.GetUserByEmail(fixedEmail);
 
             if (user == null)
             {
@@ -171,8 +175,8 @@ namespace TopLEarn.Web.Controllers
                 return View(forgot);
             }
 
-            string bodyEmail = _viewRenderService.RenderToStringAsync("_ForgotPassword", user);
-            SendEmail.Send(user.Email, "بازیابی حساب کاربری", bodyEmail);
+            string bodyEmail = _viewRender.RenderToStringAsync("_ForgotPassword", user);
+            SendEmail.Send(user.Email,"بازیابی حساب کاربری",bodyEmail);
             ViewBag.IsSuccess = true;
 
             return View();
@@ -180,6 +184,7 @@ namespace TopLEarn.Web.Controllers
         #endregion
 
         #region Reset Password
+
         public ActionResult ResetPassword(string id)
         {
             return View(new ResetPasswordViewModel()
@@ -195,19 +200,18 @@ namespace TopLEarn.Web.Controllers
             if (!ModelState.IsValid)
                 return View(reset);
 
-            User user = _userServices.GetUserByActiveCode(reset.ActiveCode);
+            DataLayer.Entities.User.User user = _userService.GetUserByActiveCode(reset.ActiveCode);
 
             if (user == null)
                 return NotFound();
 
             string hashNewPassword = PasswordHelper.EncodePasswordMd5(reset.Password);
             user.Password = hashNewPassword;
-            _userServices.UpdateUser(user);
+            _userService.UpdateUser(user);
 
             return Redirect("/Login");
 
         }
         #endregion
-
     }
 }

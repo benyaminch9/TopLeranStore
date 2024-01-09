@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -13,6 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TopLearn.Core.Convertors;
 using TopLearn.Core.Services;
+using TopLearn.Core.Services.Interfaces;
 using TopLearn.DataLayer.Context;
 
 namespace TopLEarn.Web
@@ -60,7 +61,7 @@ namespace TopLEarn.Web
 
             #region IoC
 
-            services.AddTransient<UserServices, UserServices>();
+            services.AddScoped<IUserServices, UserServices>();
 
             services.AddControllersWithViews(options =>
             {
@@ -83,7 +84,14 @@ namespace TopLEarn.Web
 
             app.UseStaticFiles();
             app.UseAuthentication();
-            app.UseMvcWithDefaultRoute();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                  name: "areas",
+                  template: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                );
+                routes.MapRoute("Default", "{controller=Home}/{action=Index}/{id?}");
+            });
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>

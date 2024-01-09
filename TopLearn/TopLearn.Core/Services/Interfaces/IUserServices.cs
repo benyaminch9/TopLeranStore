@@ -6,7 +6,7 @@ using TopLearn.DataLayer.Entities.User;
 
 namespace TopLearn.Core.Services.Interfaces
 {
-    public interface IUserServices 
+    public interface IUserServices
     {
         bool IsExistUserName(string userName);
         bool IsExistEmail(string email);
@@ -14,7 +14,15 @@ namespace TopLearn.Core.Services.Interfaces
         User LoginUser(LoginViewModel login);
         User GetUserByEmail(string email);
         User GetUserByActiveCode(string activeCode);
+        User GetUserByUserName(string username);
         void UpdateUser(User user);
         bool ActiveAccount(string activeCode);
+
+        #region User Panel
+
+        InfomationUserViewModel GetUserInformation(string userName);
+        SideBarUserPanelViewModel GetSideBarUserPanelData(string userName);
+
+        #endregion
     }
 }

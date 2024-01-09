@@ -55,6 +55,10 @@ namespace TopLearn.Core.Services
         {
             return _context.Users.SingleOrDefault(u => u.ActiveCode == activeCode);
         }
+        public User GetUserByUserName(string username)
+        {
+            return _context.Users.SingleOrDefault(u => u.UserName == username);
+        }
 
         public void UpdateUser(User user)
         {
@@ -73,6 +77,28 @@ namespace TopLearn.Core.Services
             _context.SaveChanges();
 
             return true;
+        }
+
+        public InfomationUserViewModel GetUserInformation(string userName)
+        {
+            var user = GetUserByUserName(userName);
+            InfomationUserViewModel infomation = new InfomationUserViewModel();
+            infomation.UserName = user.UserName;
+            infomation.Email = user.Email;
+            infomation.RegisterDate = user.RegisterDate;
+            infomation.Wallet = 0;
+
+            return infomation;
+        }
+
+        public SideBarUserPanelViewModel GetSideBarUserPanelData(string userName)
+        {
+            return _context.Users.Where(u => u.UserName == userName).Select(u => new SideBarUserPanelViewModel()
+            {
+                UserName = u.UserName,
+                ImageName = u.UserAvatar,
+                RegisterDate = u.RegisterDate
+            }).Single();
         }
     }
 }
