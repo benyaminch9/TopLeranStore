@@ -309,3 +309,6 @@ W:\برنامه نویسی\آموزش ها\Practise\TopLearnStore\TopLearn\TopLE
 W:\برنامه نویسی\آموزش ها\Practise\TopLearnStore\TopLearn\TopLEarn.Web\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
 W:\برنامه نویسی\آموزش ها\Practise\TopLearnStore\TopLearn\TopLEarn.Web\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
 W:\برنامه نویسی\آموزش ها\Practise\TopLearnStore\TopLearn\TopLEarn.Web\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_DefaultLayout.cshtml.g.cs
+W:\برنامه نویسی\آموزش ها\Practise\TopLearnStore\TopLearn\TopLEarn.Web\obj\Debug\netcoreapp3.1\Razor\Areas\UserPanel\Views\Home\EditPRofile.cshtml.g.cs
+W:\برنامه نویسی\آموزش ها\Practise\TopLearnStore\TopLearn\TopLEarn.Web\obj\Debug\netcoreapp3.1\Razor\Areas\UserPanel\Views\Home\ChangePassword.cshtml.g.cs
+W:\برنامه نویسی\آموزش ها\Practise\TopLearnStore\TopLearn\TopLEarn.Web\obj\Debug\netcoreapp3.1\Razor\Areas\UserPanel\Views\Wallet\Index.cshtml.g.cs

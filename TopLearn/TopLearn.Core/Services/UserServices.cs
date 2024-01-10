@@ -11,6 +11,8 @@ using TopLearn.Core.DTOs;
 using TopLearn.Core.Security;
 using TopLearn.Core.Convertors;
 using TopLearn.Core.Generate;
+using System.IO;
+using TopLearn.DataLayer.Entities.Wallet;
 
 namespace TopLearn.Core.Services
 {
@@ -19,7 +21,7 @@ namespace TopLearn.Core.Services
         private TopLearnContext _context;
         public UserServices(TopLearnContext context)
         {
-            _context= context;
+            _context = context;
         }
 
         public bool IsExistUserName(string userName)
@@ -86,7 +88,7 @@ namespace TopLearn.Core.Services
             infomation.UserName = user.UserName;
             infomation.Email = user.Email;
             infomation.RegisterDate = user.RegisterDate;
-            infomation.Wallet = 0;
+            infomation.Wallet = BalancUserWallet(userName);
 
             return infomation;
         }
@@ -99,6 +101,113 @@ namespace TopLearn.Core.Services
                 ImageName = u.UserAvatar,
                 RegisterDate = u.RegisterDate
             }).Single();
+        }
+
+        public EditProfileViewModel GetDataForEditProfileUser(string username)
+        {
+            return _context.Users.Where(u => u.UserName == username).Select(u => new EditProfileViewModel()
+            {
+                AvatarName = u.UserAvatar,
+                Email = u.Email,
+                UserName = u.UserName
+
+            }).Single();
+        }
+
+        public void EditProfile(string username, EditProfileViewModel profile)
+        {
+            if (profile.UserAvatar != null)
+            {
+                string imagePath = "";
+                if (profile.AvatarName != "Defult.jpg")
+                {
+                    imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/UserAvatar", profile.AvatarName);
+                    if (File.Exists(imagePath))
+                    {
+                        File.Delete(imagePath);
+                    }
+                }
+
+                profile.AvatarName = NameGenerator.GenerateUniqCode() + Path.GetExtension(profile.UserAvatar.FileName);
+                imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/UserAvatar", profile.AvatarName);
+                using (var stream = new FileStream(imagePath, FileMode.Create))
+                {
+                    profile.UserAvatar.CopyTo(stream);
+                }
+
+            }
+
+            var user = GetUserByUserName(username);
+            user.UserName = profile.UserName;
+            user.Email = profile.Email;
+            user.UserAvatar = profile.AvatarName;
+
+            UpdateUser(user);
+
+        }
+
+        public bool CompareOldPassword(string oldPassword, string username)
+        {
+            string hashOldPassword = PasswordHelper.EncodePasswordMd5(oldPassword);
+            return _context.Users.Any(u => u.UserName == username && u.Password == hashOldPassword);
+        }
+
+        public void ChangeUserPassword(string userName, string newPassword)
+        {
+            var user = GetUserByUserName(userName);
+            user.Password = PasswordHelper.EncodePasswordMd5(newPassword);
+            UpdateUser(user);
+        }
+
+        public int BalancUserWallet(string userName)
+        {
+            int userId = GetUserIdByUserName(userName);
+            var enter = _context.Wallets
+                .Where(w => w.UserId == userId && w.TypeId == 1 && w.IsPay)
+                .Select(w => w.Amount).ToList();
+
+            var exit = _context.Wallets
+                .Where(w => w.UserId == userId && w.TypeId == 2)
+                .Select(w => w.Amount).ToList();
+
+            return (enter.Sum() - exit.Sum());
+        }
+
+        public int GetUserIdByUserName(string userName)
+        {
+            return _context.Users.Single(u => u.UserName == userName).UserId;
+        }
+
+        public List<WalletViewModel> GetWalletUser(string userName)
+        {
+            int userId=GetUserIdByUserName(userName);
+            return _context.Wallets.Where(w=>w.IsPay && w.UserId== userId).Select(w=> new WalletViewModel()
+            {
+                Amount=w.Amount,
+                DateTime=w.CreateDate,
+                Description=w.Description,
+                Type=w.TypeId
+            }).ToList();
+        }
+
+        public void ChageWallet(string userName, int amount, string Description, bool isPay = false)
+        {
+            Wallet wallet = new Wallet()
+            {
+                Amount = amount,
+                CreateDate = DateTime.Now,
+                Description = Description,
+                IsPay = isPay,
+                TypeId = 1,
+                UserId = GetUserIdByUserName(userName)
+            };
+            AddWallet(wallet);
+        }
+
+        public void AddWallet(Wallet wallet)
+        {
+            _context.Wallets.Add(wallet);
+            _context.SaveChanges();
         }
     }
 }
