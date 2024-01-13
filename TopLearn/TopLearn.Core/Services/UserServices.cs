@@ -190,7 +190,7 @@ namespace TopLearn.Core.Services
             }).ToList();
         }
 
-        public void ChageWallet(string userName, int amount, string Description, bool isPay = false)
+        public int ChageWallet(string userName, int amount, string Description, bool isPay = false)
         {
             Wallet wallet = new Wallet()
             {
@@ -201,12 +201,24 @@ namespace TopLearn.Core.Services
                 TypeId = 1,
                 UserId = GetUserIdByUserName(userName)
             };
-            AddWallet(wallet);
+            return AddWallet(wallet);
         }
 
-        public void AddWallet(Wallet wallet)
+        public int AddWallet(Wallet wallet)
         {
             _context.Wallets.Add(wallet);
+            _context.SaveChanges();
+            return wallet.WalletId;
+        }
+
+        public Wallet GetWalletByWalletId(int walletId)
+        {
+            return _context.Wallets.Find(walletId);
+        }
+
+        public void UpdateWallet(Wallet wallet)
+        {
+            _context.Wallets.Update(wallet);
             _context.SaveChanges();
         }
     }

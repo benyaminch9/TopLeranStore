@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopLearn.DataLayer", "TopLe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopLearn.Core", "TopLearn.Core\TopLearn.Core.csproj", "{3E1BD6F1-13F4-4132-920D-1EA95B8BB664}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopLEarn.Web", "TopLEarn.Web\TopLEarn.Web.csproj", "{7A29DB1A-76E7-454C-BC0C-C01D53C0051F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopLEarn.Web", "TopLEarn.Web\TopLEarn.Web.csproj", "{7A29DB1A-76E7-454C-BC0C-C01D53C0051F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
