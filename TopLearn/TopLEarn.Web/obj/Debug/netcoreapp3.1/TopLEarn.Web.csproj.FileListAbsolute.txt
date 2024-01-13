@@ -328,3 +328,4 @@ W:\برنامه نویسی\آموزش ها\Practise\TopLearnStore\TopLearn\TopLE
 W:\برنامه نویسی\آموزش ها\Practise\TopLearnStore\TopLearn\TopLEarn.Web\obj\Debug\netcoreapp3.1\Razor\Pages\Shared\_AdminLayout.cshtml.g.cs
 W:\برنامه نویسی\آموزش ها\Practise\TopLearnStore\TopLearn\TopLEarn.Web\obj\Debug\netcoreapp3.1\Razor\Pages\_ViewImports.cshtml.g.cs
 W:\برنامه نویسی\آموزش ها\Practise\TopLearnStore\TopLearn\TopLEarn.Web\obj\Debug\netcoreapp3.1\Razor\Pages\_ViewStart.cshtml.g.cs
+W:\برنامه نویسی\آموزش ها\Practise\TopLearnStore\TopLearn\TopLEarn.Web\obj\Debug\netcoreapp3.1\Razor\Pages\Admin\Users\Index.cshtml.g.cs
